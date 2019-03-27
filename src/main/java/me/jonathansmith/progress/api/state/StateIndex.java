@@ -1,4 +1,4 @@
-package me.jonathansmith.api.state;
+package me.jonathansmith.progress.api.state;
 
 public interface StateIndex {
 }

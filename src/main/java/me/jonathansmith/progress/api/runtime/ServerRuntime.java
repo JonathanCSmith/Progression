@@ -1,4 +1,4 @@
-package me.jonathansmith.api.runtime;
+package me.jonathansmith.progress.api.runtime;
 
 public interface ServerRuntime extends Runtime {
 }

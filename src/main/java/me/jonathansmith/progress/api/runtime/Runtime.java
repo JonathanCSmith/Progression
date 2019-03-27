@@ -1,6 +1,6 @@
-package me.jonathansmith.api.runtime;
+package me.jonathansmith.progress.api.runtime;
 
-import me.jonathansmith.api.properties.ConfigurationProperties;
+import me.jonathansmith.progress.api.properties.ConfigurationProperties;
 
 public interface Runtime extends Runnable {
 

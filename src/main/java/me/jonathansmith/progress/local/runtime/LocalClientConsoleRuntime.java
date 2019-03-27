@@ -1,10 +1,10 @@
-package me.jonathansmith.local.runtime;
+package me.jonathansmith.progress.local.runtime;
 
-import me.jonathansmith.TreeOfLife;
-import me.jonathansmith.api.properties.ConfigurationProperties;
-import me.jonathansmith.api.runtime.ClientRuntime;
-import me.jonathansmith.common.runtime.CommonRuntime;
+import me.jonathansmith.progress.Progression;
+import me.jonathansmith.progress.api.properties.ConfigurationProperties;
+import me.jonathansmith.progress.api.runtime.ClientRuntime;
 
+import me.jonathansmith.progress.common.runtime.CommonRuntime;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL11;
@@ -12,7 +12,7 @@ import org.lwjgl.system.MemoryUtil;
 
 public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRuntime {
 
-    private final TreeOfLife treeOfLife;
+    private final Progression progression;
 
     private long window;
 
@@ -21,8 +21,8 @@ public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRu
     private int initialXPosition = 100;
     private int initialYPosition = 100;
 
-    public LocalClientConsoleRuntime(TreeOfLife treeOfLife) {
-        this.treeOfLife = treeOfLife;
+    public LocalClientConsoleRuntime(Progression progression) {
+        this.progression = progression;
     }
 
     public void init(ConfigurationProperties configurationProperties) {

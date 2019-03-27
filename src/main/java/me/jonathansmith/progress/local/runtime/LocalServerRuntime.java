@@ -1,7 +1,7 @@
-package me.jonathansmith.local.runtime;
+package me.jonathansmith.progress.local.runtime;
 
-import me.jonathansmith.api.properties.ConfigurationProperties;
-import me.jonathansmith.api.runtime.ServerRuntime;
+import me.jonathansmith.progress.api.properties.ConfigurationProperties;
+import me.jonathansmith.progress.api.runtime.ServerRuntime;
 
 public class LocalServerRuntime implements ServerRuntime {
 

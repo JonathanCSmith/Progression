@@ -1,4 +1,4 @@
-package me.jonathansmith.api.properties;
+package me.jonathansmith.progress.api.properties;
 
 public class ConfigurationProperties {
 

@@ -1,6 +1,6 @@
-package me.jonathansmith.api.state;
+package me.jonathansmith.progress.api.state;
 
-import me.jonathansmith.api.actor.Actor;
+import me.jonathansmith.progress.api.actor.Actor;
 
 import java.util.List;
 

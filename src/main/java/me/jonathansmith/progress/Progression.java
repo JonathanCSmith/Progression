@@ -1,16 +1,16 @@
-package me.jonathansmith;
+package me.jonathansmith.progress;
 
-import me.jonathansmith.api.properties.ConfigurationProperties;
-import me.jonathansmith.api.properties.ProgramArguments;
-import me.jonathansmith.api.runtime.ClientRuntime;
-import me.jonathansmith.api.runtime.ServerRuntime;
+import me.jonathansmith.progress.api.properties.ConfigurationProperties;
+import me.jonathansmith.progress.api.properties.ProgramArguments;
+import me.jonathansmith.progress.api.runtime.ClientRuntime;
+import me.jonathansmith.progress.api.runtime.ServerRuntime;
 import com.beust.jcommander.JCommander;
-import me.jonathansmith.local.runtime.LocalClientConsoleRuntime;
+import me.jonathansmith.progress.local.runtime.LocalClientConsoleRuntime;
 
 import java.io.IOException;
 import java.util.MissingResourceException;
 
-public class TreeOfLife {
+public class Progression {
 
     private final ProgramArguments arguments;
 
@@ -19,7 +19,7 @@ public class TreeOfLife {
     private ClientRuntime clientRuntime;
     private ServerRuntime serverRuntime;
 
-    private TreeOfLife(ProgramArguments arguments) {
+    private Progression(ProgramArguments arguments) {
         this.arguments = arguments;
     }
 
@@ -77,12 +77,12 @@ public class TreeOfLife {
 
         // Construct the basic environment
         System.out.println("Creating the tree of life application.");
-        TreeOfLife treeOfLife = new TreeOfLife(arguments);
+        Progression progression = new Progression(arguments);
 
         // Initialise the runtimes
         System.out.println("Initialising the Tree of Life Application");
         try {
-            treeOfLife.buildRuntimes();
+            progression.buildRuntimes();
         }
 
         catch (IOException e) {
@@ -91,6 +91,6 @@ public class TreeOfLife {
             System.exit(0);
         }
 
-        treeOfLife.run();
+        progression.run();
     }
 }

@@ -1,18 +1,18 @@
-package me.jonathansmith.local.runtime;
+package me.jonathansmith.progress.local.runtime;
 
-import me.jonathansmith.TreeOfLife;
-import me.jonathansmith.api.properties.ConfigurationProperties;
-import me.jonathansmith.api.runtime.ClientRuntime;
-import me.jonathansmith.common.runtime.CommonRuntime;
+import me.jonathansmith.progress.Progression;
+import me.jonathansmith.progress.api.properties.ConfigurationProperties;
+import me.jonathansmith.progress.api.runtime.ClientRuntime;
+import me.jonathansmith.progress.common.runtime.CommonRuntime;
 
 public class LocalClientGUIRuntime extends CommonRuntime implements ClientRuntime {
 
-    private final TreeOfLife applicationWrapper;
+    private final Progression applicationWrapper;
 
     private int availableThreads = 1;
 
-    public LocalClientGUIRuntime(TreeOfLife treeOfLife) {
-        this.applicationWrapper = treeOfLife;
+    public LocalClientGUIRuntime(Progression progression) {
+        this.applicationWrapper = progression;
     }
 
     public void init(ConfigurationProperties configurationProperties) {
