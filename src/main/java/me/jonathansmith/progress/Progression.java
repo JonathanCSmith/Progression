@@ -1,14 +1,15 @@
 package me.jonathansmith.progress;
 
+import java.io.IOException;
+import java.util.MissingResourceException;
+
+import com.beust.jcommander.JCommander;
+
 import me.jonathansmith.progress.api.properties.ConfigurationProperties;
 import me.jonathansmith.progress.api.properties.ProgramArguments;
 import me.jonathansmith.progress.api.runtime.ClientRuntime;
 import me.jonathansmith.progress.api.runtime.ServerRuntime;
-import com.beust.jcommander.JCommander;
 import me.jonathansmith.progress.local.runtime.LocalClientConsoleRuntime;
-
-import java.io.IOException;
-import java.util.MissingResourceException;
 
 public class Progression {
 

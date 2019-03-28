@@ -8,6 +8,11 @@
     <artifactId>Progression</artifactId>
     <version>0.0.0</version>
 
+    <properties>
+        <lwjgl.version>3.2.1</lwjgl.version>
+        <lwjgl.natives>natives-macos</lwjgl.natives>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
         <dependency>
@@ -23,25 +28,39 @@
             <version>2.9.8</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.lwjgl/lwjgl -->
+
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
-            <version>3.2.1</version>
+            <version>${lwjgl.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.lwjgl/lwjgl-glfw -->
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-glfw</artifactId>
-            <version>3.2.1</version>
+            <version>${lwjgl.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.lwjgl/lwjgl-opengl -->
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-opengl</artifactId>
-            <version>3.2.1</version>
+            <version>${lwjgl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>${lwjgl.version}</version>
+            <classifier>${lwjgl.natives}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-glfw</artifactId>
+            <version>${lwjgl.version}</version>
+            <classifier>${lwjgl.natives}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl-opengl</artifactId>
+            <version>${lwjgl.version}</version>
+            <classifier>${lwjgl.natives}</classifier>
         </dependency>
     </dependencies>
 </project>

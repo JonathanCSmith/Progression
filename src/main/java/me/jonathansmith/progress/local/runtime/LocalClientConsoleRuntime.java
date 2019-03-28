@@ -53,6 +53,7 @@ public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRu
     public void start() {
         super.start();
         this.setStarted();
+        this.run();
     }
 
     @Override
