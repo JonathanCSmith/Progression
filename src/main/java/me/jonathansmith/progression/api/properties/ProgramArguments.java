@@ -1,4 +1,4 @@
-package me.jonathansmith.progress.api.properties;
+package me.jonathansmith.progression.api.properties;
 
 import com.beust.jcommander.Parameter;
 import com.fasterxml.jackson.databind.ObjectMapper;

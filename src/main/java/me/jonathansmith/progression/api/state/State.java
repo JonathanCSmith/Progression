@@ -1,4 +1,4 @@
-package me.jonathansmith.progress.api.state;
+package me.jonathansmith.progression.api.state;
 
 /**
  * A broad object defining the current state of something in the universe of an agent

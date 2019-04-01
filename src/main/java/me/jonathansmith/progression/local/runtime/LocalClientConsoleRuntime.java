@@ -1,10 +1,10 @@
-package me.jonathansmith.progress.local.runtime;
+package me.jonathansmith.progression.local.runtime;
 
-import me.jonathansmith.progress.Progression;
-import me.jonathansmith.progress.api.properties.ConfigurationProperties;
-import me.jonathansmith.progress.api.runtime.ClientRuntime;
+import me.jonathansmith.progression.Progression;
+import me.jonathansmith.progression.api.properties.ConfigurationProperties;
+import me.jonathansmith.progression.api.runtime.ClientRuntime;
 
-import me.jonathansmith.progress.common.runtime.CommonRuntime;
+import me.jonathansmith.progression.common.runtime.CommonRuntime;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL11;

@@ -1,11 +1,11 @@
-package me.jonathansmith.progress.api.state;
+package me.jonathansmith.progression.api.state;
 
-import me.jonathansmith.progress.api.actor.Actor;
+import me.jonathansmith.progression.api.actor.Actor;
 
 import java.util.List;
 
 /**
- * It is assumed that this interface represents the wider context for a state. Essentially encapsulating either a state or
+ * It is assumed that this user_interface represents the wider context for a state. Essentially encapsulating either a state or
  * a more refined context for a state.
  *
  * A context should describe a coordinate system - allowing quick extraction of a state at a given state index

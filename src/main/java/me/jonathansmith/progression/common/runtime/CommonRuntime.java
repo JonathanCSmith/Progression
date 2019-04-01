@@ -1,7 +1,7 @@
-package me.jonathansmith.progress.common.runtime;
+package me.jonathansmith.progression.common.runtime;
 
-import me.jonathansmith.progress.api.properties.ConfigurationProperties;
-import me.jonathansmith.progress.api.runtime.Runtime;
+import me.jonathansmith.progression.api.properties.ConfigurationProperties;
+import me.jonathansmith.progression.api.runtime.Runtime;
 
 /**
  * Common runtime thread properties
