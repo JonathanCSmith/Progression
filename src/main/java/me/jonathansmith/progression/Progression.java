@@ -9,7 +9,9 @@ import me.jonathansmith.progression.api.properties.ConfigurationProperties;
 import me.jonathansmith.progression.api.properties.ProgramArguments;
 import me.jonathansmith.progression.api.runtime.ClientRuntime;
 import me.jonathansmith.progression.api.runtime.ServerRuntime;
+import me.jonathansmith.progression.common.network.CommunicationsRuntime;
 import me.jonathansmith.progression.common.runtime.Client;
+import me.jonathansmith.progression.common.runtime.Server;
 import me.jonathansmith.progression.local.user_interface.ClientWindow;
 import me.jonathansmith.progression.local.user_interface.Console;
 import me.jonathansmith.progression.local.user_interface.ConsoleWindow;
@@ -47,6 +49,7 @@ public class Progression {
 
     private ConfigurationProperties configurationProperties = null;
 
+    private CommunicationsRuntime communicationsRuntime;
     private ClientRuntime clientRuntime;
     private ServerRuntime serverRuntime;
 
@@ -67,6 +70,9 @@ public class Progression {
             System.exit(0);
         }
 
+        // Build our communication runtime
+        this.communicationsRuntime = new CommunicationsRuntime();
+
         // Detect our runtime environment and switch out for now default to locals
         /*
             Runtime types (UX):
@@ -79,21 +85,25 @@ public class Progression {
          */
         switch (this.configurationProperties.getInterfaceType()) {
             case CONSOLE:
-                this.clientRuntime = new Client(this, new Console());
+                this.clientRuntime = new Client(this, new Console(), this.communicationsRuntime);
                 break;
 
             case CONSOLE_WINDOW:
-                this.clientRuntime = new Client(this, new ConsoleWindow());
+                this.clientRuntime = new Client(this, new ConsoleWindow(), this.communicationsRuntime);
                 break;
 
             case SERVER:
-                this.clientRuntime = new Client(this, new ServerWindow());
+                this.clientRuntime = new Client(this, new ServerWindow(), this.communicationsRuntime);
                 break;
 
             case CLIENT:
-                this.clientRuntime = new Client(this, new ClientWindow());
+                this.clientRuntime = new Client(this, new ClientWindow(), this.communicationsRuntime);
                 break;
         }
+        this.serverRuntime = new Server(this, this.communicationsRuntime);
+
+        // Bind our endpoints
+        this.communicationsRuntime.bindEndPoints(this.clientRuntime, this.serverRuntime);
     }
 
     private void run() {

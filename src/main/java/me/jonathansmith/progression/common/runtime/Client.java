@@ -2,6 +2,7 @@ package me.jonathansmith.progression.common.runtime;
 
 import me.jonathansmith.progression.Progression;
 import me.jonathansmith.progression.api.engine.Task;
+import me.jonathansmith.progression.api.network.CommunicationManager;
 import me.jonathansmith.progression.api.properties.ConfigurationProperties;
 import me.jonathansmith.progression.api.runtime.ClientRuntime;
 import me.jonathansmith.progression.api.user_interface.UserInterface;
@@ -12,15 +13,14 @@ public class Client extends CommonRuntime implements ClientRuntime {
 
     private final Progression progression;
     private final UserInterface userInterface;
+    private final CommunicationManager communicationsManager;
 
-    public Client(Progression progression, UserInterface userInterface) {
+    public Client(Progression progression, UserInterface userInterface, CommunicationManager communicationManager) {
         super();
 
         this.progression = progression;
         this.userInterface = userInterface;
-
-        // Build network manager
-        // Build server
+        this.communicationsManager = communicationManager;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class Client extends CommonRuntime implements ClientRuntime {
 
     public void handleInputs() {
         List<Task> tasks = this.userInterface.gatherInputs();
-        this.communicationsManager.processUpdates(tasks);
+        this.communicationsManager.setUpdates(tasks);
     }
 
     public void updateStates() {
-        List<Task> tasks = this.communicationsManager.gatherUpdates();
+        List<Task> tasks = this.communicationsManager.getUpdates();
 
         // Process updates
     }
