@@ -7,5 +7,9 @@ import java.util.List;
 public interface UserInterface {
     void init();
 
+    void output(String itemToPrint);
+
+    void error(String err);
+
     List<Task> gatherInputs();
 }

@@ -19,6 +19,11 @@ public class LocalClientGUIRuntime extends CommonRuntime implements ClientRuntim
         this.availableThreads = configurationProperties.getTargetClientThreads();
     }
 
+    @Override
+    protected int runTasks() {
+        return 0;
+    }
+
     public void handleInputs() {
 
     }
@@ -28,6 +33,11 @@ public class LocalClientGUIRuntime extends CommonRuntime implements ClientRuntim
     }
 
     public void render() {
+
+    }
+
+    @Override
+    public void command(String command) {
 
     }
 }

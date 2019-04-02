@@ -7,11 +7,9 @@ import com.beust.jcommander.JCommander;
 
 import me.jonathansmith.progression.api.properties.ConfigurationProperties;
 import me.jonathansmith.progression.api.properties.ProgramArguments;
-import me.jonathansmith.progression.api.runtime.ClientRuntime;
-import me.jonathansmith.progression.api.runtime.ServerRuntime;
 import me.jonathansmith.progression.common.network.CommunicationsRuntime;
-import me.jonathansmith.progression.common.runtime.Client;
-import me.jonathansmith.progression.common.runtime.Server;
+import me.jonathansmith.progression.local.runtime.Client;
+import me.jonathansmith.progression.local.runtime.Server;
 import me.jonathansmith.progression.local.user_interface.ClientWindow;
 import me.jonathansmith.progression.local.user_interface.Console;
 import me.jonathansmith.progression.local.user_interface.ConsoleWindow;
@@ -33,7 +31,7 @@ public class Progression {
         // Initialise the runtimes
         System.out.println("Initialising the Progression Application");
         try {
-            progression.buildRuntimes();
+            progression.buildRuntime();
         }
 
         catch (IOException e) {
@@ -50,15 +48,15 @@ public class Progression {
     private ConfigurationProperties configurationProperties = null;
 
     private CommunicationsRuntime communicationsRuntime;
-    private ClientRuntime clientRuntime;
-    private ServerRuntime serverRuntime;
+    private Client clientRuntime;
+    private Server serverRuntime;
 
     private Progression(ProgramArguments arguments) {
         this.arguments = arguments;
     }
 
     // Used to initialise the basic program properties
-    private void buildRuntimes() throws IOException, MissingResourceException {
+    private void buildRuntime() throws IOException, MissingResourceException {
         this.configurationProperties = this.arguments.unpackConfiguration();
         if (this.configurationProperties == null) {
             throw new MissingResourceException("Could not load the configuration file.", this.getClass().toString(), this.arguments.getConfigurationPath());
@@ -88,17 +86,17 @@ public class Progression {
                 this.clientRuntime = new Client(this, new Console(), this.communicationsRuntime);
                 break;
 
-            case CONSOLE_WINDOW:
-                this.clientRuntime = new Client(this, new ConsoleWindow(), this.communicationsRuntime);
-                break;
-
-            case SERVER:
-                this.clientRuntime = new Client(this, new ServerWindow(), this.communicationsRuntime);
-                break;
-
-            case CLIENT:
-                this.clientRuntime = new Client(this, new ClientWindow(), this.communicationsRuntime);
-                break;
+//            case CONSOLE_WINDOW:
+//                this.clientRuntime = new Client(this, new ConsoleWindow(), this.communicationsRuntime);
+//                break;
+//
+//            case SERVER:
+//                this.clientRuntime = new Client(this, new ServerWindow(), this.communicationsRuntime);
+//                break;
+//
+//            case CLIENT:
+//                this.clientRuntime = new Client(this, new ClientWindow(), this.communicationsRuntime);
+//                break;
         }
         this.serverRuntime = new Server(this, this.communicationsRuntime);
 
@@ -112,14 +110,18 @@ public class Progression {
             return;
         }
 
-        // Initialise the client runtime
+        // Initialise all of the runtimes
+        this.communicationsRuntime.init(this.configurationProperties);
+        this.serverRuntime.init(this.configurationProperties);
         this.clientRuntime.init(this.configurationProperties);
 
         // Start the thread
+        this.communicationsRuntime.start();
+        this.serverRuntime.start();
         this.clientRuntime.start();
 
-        // Wait for the program to start
-        while (!this.clientRuntime.hasStarted()) {
+        // Wait for the program to start running
+        while (!this.communicationsRuntime.isRunning() || !this.serverRuntime.isRunning() || !this.clientRuntime.isRunning()) {
             try {
                 Thread.sleep(10);
             }

@@ -34,4 +34,9 @@ public class LocalServerRuntime implements ServerRuntime {
     public void run() {
 
     }
+
+    @Override
+    public void command(String command) {
+
+    }
 }

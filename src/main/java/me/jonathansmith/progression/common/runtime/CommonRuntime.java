@@ -1,7 +1,10 @@
 package me.jonathansmith.progression.common.runtime;
 
+import me.jonathansmith.progression.api.engine.Task;
 import me.jonathansmith.progression.api.properties.ConfigurationProperties;
 import me.jonathansmith.progression.api.runtime.Runtime;
+
+import java.util.List;
 
 /**
  * Common runtime thread properties
@@ -20,12 +23,29 @@ public abstract class CommonRuntime extends Thread implements Runtime {
 
     @Override
     public void start() {
+        super.start();
         this.hasStarted = true;
     }
 
     @Override
     public void run() {
+        this.isRunning = true;
 
+        while (this.isRunning) {
+            int sleepDuration = this.runTasks();
+            if (sleepDuration <= 0) {
+                continue;
+            }
+
+            try {
+                Thread.sleep(sleepDuration);
+            } catch (InterruptedException e) {
+                System.err.println("Error in wait thread - execution was interrupted");
+                e.printStackTrace();
+                this.setRunning(false);
+                this.setError();
+            }
+        }
     }
 
     public final void inline() throws InterruptedException {
@@ -55,4 +75,6 @@ public abstract class CommonRuntime extends Thread implements Runtime {
     protected void setError() {
         this.hasError = true;
     }
+
+    protected abstract int runTasks();
 }

@@ -19,6 +19,6 @@ public class ConfigurationProperties {
     }
 
     public boolean validateRuntimeState() {
-        return false;
+        return true;
     }
 }

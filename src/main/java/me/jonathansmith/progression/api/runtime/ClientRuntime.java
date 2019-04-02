@@ -1,10 +1,5 @@
 package me.jonathansmith.progression.api.runtime;
 
-public interface ClientRuntime extends Runtime {
+public interface ClientRuntime extends GameRuntime {
 
-    void handleInputs();
-
-    void updateStates();
-
-    void render();
 }

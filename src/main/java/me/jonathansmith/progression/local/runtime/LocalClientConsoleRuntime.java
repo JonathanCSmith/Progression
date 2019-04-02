@@ -1,6 +1,7 @@
 package me.jonathansmith.progression.local.runtime;
 
 import me.jonathansmith.progression.Progression;
+import me.jonathansmith.progression.api.engine.Task;
 import me.jonathansmith.progression.api.properties.ConfigurationProperties;
 import me.jonathansmith.progression.api.runtime.ClientRuntime;
 
@@ -9,6 +10,8 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
+
+import java.util.List;
 
 public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRuntime {
 
@@ -69,6 +72,11 @@ public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRu
         }
     }
 
+    @Override
+    protected int runTasks() {
+        return 0;
+    }
+
     public void handleInputs() {
 
     }
@@ -79,5 +87,10 @@ public class LocalClientConsoleRuntime extends CommonRuntime implements ClientRu
 
     public void render() {
         GLFW.glfwSwapBuffers(this.window);
+    }
+
+    @Override
+    public void command(String command) {
+
     }
 }
